@@ -1,6 +1,6 @@
 //Maya ASCII 2014 scene
-//Name: ReSkull.ma
-//Last modified: Mon, Oct 14, 2013 01:26:22 PM
+//Name: R Skulls.ma
+//Last modified: Mon, Oct 14, 2013 01:26:44 PM
 //Codeset: 1252
 requires maya "2014";
 currentUnit -l centimeter -a degree -t film;
@@ -23081,4 +23081,4 @@ connectAttr "groupId6.msg" ":initialShadingGroup.gn" -na;
 connectAttr "groupId7.msg" ":initialShadingGroup.gn" -na;
 connectAttr "groupId8.msg" ":initialShadingGroup.gn" -na;
 connectAttr "defaultRenderLayer.msg" ":defaultRenderingList1.r" -na;
-// End of ReSkull.ma
+// End of R Skulls.ma

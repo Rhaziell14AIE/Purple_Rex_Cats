@@ -1,6 +1,6 @@
 //Maya ASCII 2014 scene
-//Name: Random Props.ma
-//Last modified: Mon, Oct 14, 2013 01:23:42 PM
+//Name: R Random Props.ma
+//Last modified: Mon, Oct 14, 2013 01:24:10 PM
 //Codeset: 1252
 requires maya "2014";
 currentUnit -l centimeter -a degree -t film;
@@ -11,11 +11,11 @@ fileInfo "cutIdentifier" "201307170459-880822";
 fileInfo "osv" "Microsoft Windows 7 Business Edition, 64-bit Windows 7 Service Pack 1 (Build 7601)\n";
 fileInfo "license" "education";
 createNode transform -s -n "persp";
-	setAttr ".t" -type "double3" -47.871304924722786 7.0294105122310739 -17.605254112361969 ;
+	setAttr ".t" -type "double3" -73.183131227899082 10.998252518381905 1.8152920465848226 ;
 	setAttr -av ".tx";
 	setAttr -av ".ty";
 	setAttr -av ".tz";
-	setAttr ".r" -type "double3" -11.738352729602889 188.19999999999902 0 ;
+	setAttr ".r" -type "double3" -18.338352729602629 243.3999999999983 0 ;
 	setAttr -av ".rx";
 	setAttr -av ".ry";
 	setAttr -av ".rz";
@@ -10468,17 +10468,6 @@ createNode mesh -n "polySurfaceShape10" -p "pCylinder30";
 	setAttr ".cd" -type "dataPolyComponent" Index_Data Edge 0 ;
 	setAttr ".cvd" -type "dataPolyComponent" Index_Data Vertex 0 ;
 	setAttr ".hfd" -type "dataPolyComponent" Index_Data Face 0 ;
-createNode transform -n "pCube28";
-	setAttr ".t" -type "double3" -40.682969518582311 0 11.846264810289377 ;
-createNode mesh -n "pCubeShape28" -p "pCube28";
-	setAttr -k off ".v";
-	setAttr ".vir" yes;
-	setAttr ".vif" yes;
-	setAttr ".uvst[0].uvsn" -type "string" "map1";
-	setAttr ".cuvs" -type "string" "map1";
-	setAttr ".dcc" -type "string" "Ambient+Diffuse";
-	setAttr ".covm[0]"  0 1 1;
-	setAttr ".cdvm[0]"  0 1 1;
 createNode lightLinker -s -n "lightLinker1";
 	setAttr -s 14 ".lnk";
 	setAttr -s 14 ".slnk";
@@ -10873,18 +10862,13 @@ createNode polyCylinder -n "polyCylinder5";
 	setAttr ".h" 0.5983686873296602;
 	setAttr ".sc" 1;
 	setAttr ".cuv" 3;
-createNode polyCube -n "polyCube11";
-	setAttr ".w" 2;
-	setAttr ".h" 2;
-	setAttr ".d" 2;
-	setAttr ".cuv" 4;
 select -ne :time1;
 	setAttr ".o" 36;
 	setAttr ".unw" 36;
 select -ne :renderPartition;
 	setAttr -s 14 ".st";
 select -ne :initialShadingGroup;
-	setAttr -s 51 ".dsm";
+	setAttr -s 50 ".dsm";
 	setAttr ".ro" yes;
 select -ne :initialParticleSE;
 	setAttr ".ro" yes;
@@ -10945,7 +10929,6 @@ connectAttr "polyMergeVert15.out" "pCylinderShape16.i";
 connectAttr "polyMergeVert16.out" "pCylinderShape17.i";
 connectAttr "polyMergeVert17.out" "pCylinderShape18.i";
 connectAttr "polyMergeVert18.out" "pCylinderShape19.i";
-connectAttr "polyCube11.out" "pCubeShape28.i";
 relationship "link" ":lightLinker1" ":initialShadingGroup.message" ":defaultLightSet.message";
 relationship "link" ":lightLinker1" ":initialParticleSE.message" ":defaultLightSet.message";
 relationship "link" ":lightLinker1" "blinn1SG.message" ":defaultLightSet.message";
@@ -11146,7 +11129,6 @@ connectAttr "pCylinderShape49.iog" ":initialShadingGroup.dsm" -na;
 connectAttr "pCylinderShape50.iog" ":initialShadingGroup.dsm" -na;
 connectAttr "pCylinderShape51.iog" ":initialShadingGroup.dsm" -na;
 connectAttr "pCylinderShape52.iog" ":initialShadingGroup.dsm" -na;
-connectAttr "pCubeShape28.iog" ":initialShadingGroup.dsm" -na;
 connectAttr "lambert2.msg" ":defaultShaderList1.s" -na;
 connectAttr "lambert3.msg" ":defaultShaderList1.s" -na;
 connectAttr "blinn2.msg" ":defaultShaderList1.s" -na;
@@ -11165,4 +11147,4 @@ connectAttr "checker1.msg" ":defaultTextureList1.tx" -na;
 connectAttr "wood4.msg" ":defaultTextureList1.tx" -na;
 connectAttr "place2dTexture1.msg" ":defaultRenderUtilityList1.u" -na;
 connectAttr "defaultRenderLayer.msg" ":defaultRenderingList1.r" -na;
-// End of Random Props.ma
+// End of R Random Props.ma
