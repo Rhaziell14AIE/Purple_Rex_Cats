@@ -1,6 +1,6 @@
 //Maya ASCII 2014 scene
 //Name: Fire Cauldren.ma
-//Last modified: Tue, Oct 29, 2013 04:46:24 PM
+//Last modified: Tue, Oct 29, 2013 04:54:55 PM
 //Codeset: 1252
 requires maya "2014";
 requires -nodeType "mentalrayFramebuffer" -nodeType "mentalrayOutputPass" -nodeType "mentalrayRenderPass"
@@ -91,12 +91,12 @@ fileInfo "osv" "Microsoft Windows 7 Business Edition, 64-bit Windows 7 Service P
 fileInfo "license" "education";
 createNode transform -s -n "persp";
 	setAttr ".v" no;
-	setAttr ".t" -type "double3" 5.7354848566445851 12.475020109547023 31.457319058817028 ;
-	setAttr ".r" -type "double3" -19.538365010239772 6846.5999999727655 2.001108490833161e-016 ;
+	setAttr ".t" -type "double3" 3.9784732700730858 5.4188361960812621 32.726977820954637 ;
+	setAttr ".r" -type "double3" -2.7383650102388812 6844.5999999725555 -3.739257118859611e-017 ;
 createNode camera -s -n "perspShape" -p "persp";
 	setAttr -k off ".v" no;
 	setAttr ".fl" 34.999999999999993;
-	setAttr ".coi" 34.467339609417252;
+	setAttr ".coi" 34.467339609417493;
 	setAttr ".imn" -type "string" "persp";
 	setAttr ".den" -type "string" "persp_depth";
 	setAttr ".man" -type "string" "persp_mask";
@@ -142,7 +142,8 @@ createNode camera -s -n "sideShape" -p "side";
 	setAttr ".man" -type "string" "side_mask";
 	setAttr ".hc" -type "string" "viewSet -s %camera";
 	setAttr ".o" yes;
-createNode transform -n "Cauldren";
+createNode transform -n "Cauldren_Set";
+createNode transform -n "Cauldren" -p "Cauldren_Set";
 	setAttr ".t" -type "double3" -0.19732088732843756 2.9944436176089355 -0.09252889481841825 ;
 	setAttr ".r" -type "double3" -180 169.99999999999966 0 ;
 	setAttr ".s" -type "double3" 0.54675696217446068 0.54675696217446068 0.54675696217446068 ;
@@ -155,7 +156,7 @@ createNode mesh -n "CauldrenShape" -p "Cauldren";
 	setAttr ".dcc" -type "string" "Ambient+Diffuse";
 	setAttr ".covm[0]"  0 1 1;
 	setAttr ".cdvm[0]"  0 1 1;
-createNode transform -n "strokeFlameFine1";
+createNode transform -n "strokeFlameFine1" -p "Cauldren_Set";
 	setAttr ".t" -type "double3" 0.15674623941518256 1.708658185983754 -10.877798675559267 ;
 	setAttr ".s" -type "double3" 2.7656707427503795 917.51352485965833 2.6930953017280408 ;
 createNode stroke -n "strokeShapeFlameFine1" -p "strokeFlameFine1";
@@ -179,7 +180,7 @@ createNode stroke -n "strokeShapeFlameFine1" -p "strokeFlameFine1";
 	setAttr -s 63 ".psr[0:62]"  1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 
 		1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 
 		1 1;
-createNode transform -n "curveFlameFine";
+createNode transform -n "curveFlameFine" -p "Cauldren_Set";
 	setAttr ".v" no;
 createNode nurbsCurve -n "curveFlameFineShape" -p "curveFlameFine";
 	setAttr -k off ".v";
@@ -253,7 +254,8 @@ createNode nurbsCurve -n "curveFlameFineShape" -p "curveFlameFine";
 		0.059828699999999999 0 4.1366209999999999
 		-0.019151000000000001 0 4.1309480000000001
 		;
-createNode transform -n "flameFine1MeshGroup";
+createNode transform -n "flameFine1MeshGroup" -p "Cauldren_Set";
+	setAttr ".it" no;
 createNode transform -n "flameFine1Main" -p "flameFine1MeshGroup";
 	setAttr ".t" -type "double3" -0.1813461979864201 -0.76807610535752568 0.25556428539957177 ;
 	setAttr ".r" -type "double3" 0 260 0 ;
@@ -267,7 +269,7 @@ createNode mesh -n "flameFine1MainShape" -p "flameFine1Main";
 	setAttr ".dcc" -type "string" "Ambient+Diffuse";
 	setAttr ".covm[0]"  0 1 1;
 	setAttr ".cdvm[0]"  0 1 1;
-createNode transform -n "volumeLight1";
+createNode transform -n "volumeLight1" -p "Cauldren_Set";
 	setAttr ".t" -type "double3" 0.51024487383093842 7.0113471843096304 0.090833088918031657 ;
 	setAttr ".s" -type "double3" 13.962983549629657 13.962983549629657 13.962983549629657 ;
 createNode volumeLight -n "volumeLightShape1" -p "volumeLight1";
@@ -284,7 +286,7 @@ createNode volumeLight -n "volumeLightShape1" -p "volumeLight1";
 	setAttr ".crg[1].crgi" 1;
 	setAttr -s 2 ".pen[0:1]"  0 0 1 1 1 1;
 	setAttr ".ema" yes;
-createNode transform -n "pCube1";
+createNode transform -n "pCube1" -p "Cauldren_Set";
 	setAttr ".t" -type "double3" -0.23019755279246032 -0.35030452957985048 -0.07697892394773509 ;
 createNode mesh -n "pCubeShape1" -p "pCube1";
 	setAttr -k off ".v";
@@ -295,121 +297,7 @@ createNode mesh -n "pCubeShape1" -p "pCube1";
 	setAttr ".dcc" -type "string" "Ambient+Diffuse";
 	setAttr ".covm[0]"  0 1 1;
 	setAttr ".cdvm[0]"  0 1 1;
-createNode transform -n "pCube2";
-	setAttr ".t" -type "double3" 5.4963800398840172 1.4892444299190406 -1.9462178258143621 ;
-createNode mesh -n "pCubeShape2" -p "pCube2";
-	setAttr -k off ".v";
-	setAttr ".vir" yes;
-	setAttr ".vif" yes;
-	setAttr ".uvst[0].uvsn" -type "string" "map1";
-	setAttr -s 84 ".uvst[0].uvsp[0:83]" -type "float2" 0.0019920461 0.42486992
-		 0.10681129 0.42486992 0.0019920461 0.52968919 0.10681129 0.52968919 0.0019920461
-		 0.42486992 0.10681129 0.42486992 0.10681129 0.52968919 0.0019920461 0.52968919 0.83379847
-		 0.80235845 0.83379847 0.42487004 0.9128356 0.42487004 0.9128356 0.80235845 0.51956433
-		 0.48067686 0.73546094 0.48067686 0.73546094 0.72047347 0.51956433 0.72047347 0.47121462
-		 0.42487004 0.78758675 0.42487004 0.78758675 0.77626508 0.47121462 0.77626508 0.78758675
-		 0.77626508 0.47121462 0.77626508 0.91897076 0.80235857 0.91897076 0.42487007 0.99800783
-		 0.42487007 0.99800783 0.80235857 0.14870718 0.42486998 0.46507934 0.42486998 0.46507934
-		 0.77626503 0.14870718 0.77626503 0.001992021 0.4208785 0.001992021 0.0016015214 0.081029102
-		 0.0016015214 0.081029102 0.4208785 0.087940797 0.4208785 0.087940797 0.0016015214
-		 0.16697788 0.0016015214 0.16697788 0.4208785 0.14257188 0.77626497 0.14257188 0.42486992
-		 0.14257188 0.42486992 0.14257188 0.77626491 0.13643655 0.77626497 0.13643655 0.42486992
-		 0.13643658 0.42486998 0.13643658 0.77626497 0.13030122 0.42486998 0.13030122 0.77626497
-		 0.13030119 0.77626497 0.13030119 0.42486992 0.12416591 0.42486992 0.12416591 0.77626491
-		 0.12416591 0.77626497 0.12416591 0.42486992 0.20425284 0.38693753 0.520625 0.38693753
-		 0.55118316 0.4208785 0.17369471 0.4208785 0.520625 0.035542496 0.55118316 0.0016015139
-		 0.20425284 0.035542496 0.17369471 0.0016015139 0.82766306 0.45542821 0.82766306 0.77180034
-		 0.79372209 0.80235845 0.79372209 0.42487004 0.82766312 0.45542821 0.82766312 0.77180034
-		 0.5881964 0.38693753 0.90456849 0.38693753 0.9351266 0.4208785 0.55763823 0.4208785
-		 0.90456849 0.035542518 0.9351266 0.0016015139 0.5881964 0.035542518 0.55763823 0.0016015139
-		 0.11803064 0.42486998 0.11803064 0.74124223 0.11803053 0.74124223 0.11803053 0.42486998
-		 0.11189513 0.74124223 0.11189513 0.42486998 0.11189523 0.42486998 0.11189523 0.74124223;
-	setAttr ".cuvs" -type "string" "map1";
-	setAttr ".dcc" -type "string" "Ambient+Diffuse";
-	setAttr ".covm[0]"  0 1 1;
-	setAttr ".cdvm[0]"  0 1 1;
-	setAttr -s 32 ".vt[0:31]"  -1.13740444 -0.2381455 1.26331663 1.1374042 -0.2381455 1.26331663
-		 -1.13740444 0.23814547 1.26331663 1.1374042 0.23814547 1.26331663 -1.13740444 0.23814547 -1.26331663
-		 1.1374042 0.23814547 -1.26331663 -1.13740444 -0.2381455 -1.26331663 1.1374042 -0.2381455 -1.26331663
-		 -1.13740444 0.23814565 1.26331651 1.1374042 0.23814565 1.26331651 1.1374042 0.23814565 -1.26331675
-		 -1.13740444 0.23814565 -1.26331675 -1.13740444 0.23814547 1.26331663 1.1374042 0.23814547 1.26331663
-		 1.1374042 0.23814547 -1.26331663 -1.13740444 0.23814547 -1.26331663 -0.7897557 0.66324627 0.86204934
-		 0.76260418 0.66324627 0.86204934 0.76260418 0.66324627 -0.86215889 -0.7897557 0.66324627 -0.86215889
-		 -1.35712624 -0.28415003 1.50736248 1.35712647 -0.28415003 1.50736248 1.35712647 0.28415 1.50736248
-		 -1.35712624 0.28415 1.50736248 -1.35712624 0.28415 -1.50736225 1.35712647 0.28415 -1.50736225
-		 1.35712647 -0.28415003 -1.50736225 -1.35712624 -0.28415003 -1.50736225 -1.13740444 -0.2381455 -1.26331663
-		 1.1374042 -0.2381455 -1.26331663 1.1374042 -0.2381455 1.26331663 -1.13740444 -0.2381455 1.26331663;
-	setAttr -s 60 ".ed[0:59]"  0 1 0 2 3 0 4 5 0 6 7 0 2 4 0 3 5 0 6 0 0
-		 7 1 0 2 8 0 3 9 0 8 9 0 5 10 0 9 10 0 4 11 0 11 10 0 8 11 0 8 12 0 9 13 0 12 13 0
-		 10 14 0 13 14 0 11 15 0 15 14 0 12 15 0 12 16 0 13 17 0 16 17 0 14 18 0 17 18 0 15 19 0
-		 19 18 0 16 19 0 0 20 0 1 21 0 20 21 0 3 22 0 21 22 0 2 23 0 23 22 0 20 23 0 4 24 0
-		 5 25 0 24 25 0 7 26 0 25 26 0 6 27 0 27 26 0 24 27 0 26 21 0 22 25 0 27 20 0 23 24 0
-		 6 28 0 7 29 0 28 29 0 1 30 0 29 30 0 0 31 0 31 30 0 28 31 0;
-	setAttr -s 30 -ch 120 ".fc[0:29]" -type "polyFaces" 
-		f 4 34 36 -39 -40
-		mu 0 4 8 9 10 11
-		f 4 26 28 -31 -32
-		mu 0 4 12 13 14 15
-		f 4 42 44 -47 -48
-		mu 0 4 22 23 24 25
-		f 4 54 56 -59 -60
-		mu 0 4 26 27 28 29
-		f 4 -49 -45 -50 -37
-		mu 0 4 30 31 32 33
-		f 4 50 39 51 47
-		mu 0 4 34 35 36 37
-		f 4 1 9 -11 -9
-		mu 0 4 63 62 66 67
-		f 4 5 11 -13 -10
-		mu 0 4 38 39 40 41
-		f 4 -3 13 14 -12
-		mu 0 4 76 77 78 79
-		f 4 -5 8 15 -14
-		mu 0 4 42 43 44 45
-		f 4 10 17 -19 -17
-		mu 0 4 80 81 82 83
-		f 4 12 19 -21 -18
-		mu 0 4 46 47 48 49
-		f 4 -15 21 22 -20
-		mu 0 4 20 21 19 18
-		f 4 -16 16 23 -22
-		mu 0 4 50 51 52 53
-		f 4 18 25 -27 -25
-		mu 0 4 16 17 13 12
-		f 4 20 27 -29 -26
-		mu 0 4 17 18 14 13
-		f 4 -23 29 30 -28
-		mu 0 4 18 19 15 14
-		f 4 -24 24 31 -30
-		mu 0 4 19 16 12 15
-		f 4 0 33 -35 -33
-		mu 0 4 54 55 56 57
-		f 4 -2 37 38 -36
-		mu 0 4 62 63 64 65
-		f 4 2 41 -43 -41
-		mu 0 4 68 69 70 71
-		f 4 -4 45 46 -44
-		mu 0 4 58 60 61 59
-		f 4 -8 43 48 -34
-		mu 0 4 55 58 59 56
-		f 4 -6 35 49 -42
-		mu 0 4 69 72 73 70
-		f 4 6 32 -51 -46
-		mu 0 4 60 54 57 61
-		f 4 4 40 -52 -38
-		mu 0 4 74 68 71 75
-		f 4 3 53 -55 -53
-		mu 0 4 0 1 5 4
-		f 4 7 55 -57 -54
-		mu 0 4 1 3 6 5
-		f 4 -1 57 58 -56
-		mu 0 4 3 2 7 6
-		f 4 -7 52 59 -58
-		mu 0 4 2 0 4 7;
-	setAttr ".cd" -type "dataPolyComponent" Index_Data Edge 0 ;
-	setAttr ".cvd" -type "dataPolyComponent" Index_Data Vertex 0 ;
-	setAttr ".hfd" -type "dataPolyComponent" Index_Data Face 0 ;
-createNode transform -n "ambientLight1";
+createNode transform -n "ambientLight1" -p "Cauldren_Set";
 	setAttr ".t" -type "double3" -0.22974690019749361 0.31120279008011131 -0.041158425980104066 ;
 createNode ambientLight -n "ambientLightShape1" -p "ambientLight1";
 	setAttr -k off ".v";
@@ -1267,7 +1155,6 @@ createNode polyCube -n "polyCube1";
 createNode lambert -n "lambert3";
 createNode shadingEngine -n "lambert3SG";
 	setAttr ".ihi" 0;
-	setAttr -s 2 ".dsm";
 	setAttr ".ro" yes;
 createNode materialInfo -n "materialInfo8";
 createNode polyExtrudeFace -n "polyExtrudeFace1";
@@ -1756,7 +1643,6 @@ connectAttr "file1.oc" "lambert3.c";
 connectAttr "bump2d1.o" "lambert3.n";
 connectAttr "lambert3.oc" "lambert3SG.ss";
 connectAttr "pCubeShape1.iog" "lambert3SG.dsm" -na;
-connectAttr "pCubeShape2.iog" "lambert3SG.dsm" -na;
 connectAttr "lambert3SG.msg" "materialInfo8.sg";
 connectAttr "lambert3.msg" "materialInfo8.m";
 connectAttr "file1.msg" "materialInfo8.t" -na;
