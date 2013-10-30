@@ -1,6 +1,6 @@
 //Maya ASCII 2014 scene
 //Name: Fire Cauldren.ma
-//Last modified: Tue, Oct 29, 2013 04:54:55 PM
+//Last modified: Wed, Oct 30, 2013 11:40:17 AM
 //Codeset: 1252
 requires maya "2014";
 requires -nodeType "mentalrayFramebuffer" -nodeType "mentalrayOutputPass" -nodeType "mentalrayRenderPass"
@@ -91,12 +91,12 @@ fileInfo "osv" "Microsoft Windows 7 Business Edition, 64-bit Windows 7 Service P
 fileInfo "license" "education";
 createNode transform -s -n "persp";
 	setAttr ".v" no;
-	setAttr ".t" -type "double3" 3.9784732700730858 5.4188361960812621 32.726977820954637 ;
-	setAttr ".r" -type "double3" -2.7383650102388812 6844.5999999725555 -3.739257118859611e-017 ;
+	setAttr ".t" -type "double3" 1.3331951076447939 3.6794050183200842 31.346151711543442 ;
+	setAttr ".r" -type "double3" -0.9383574526367392 6845.3999999385433 0 ;
 createNode camera -s -n "perspShape" -p "persp";
 	setAttr -k off ".v" no;
 	setAttr ".fl" 34.999999999999993;
-	setAttr ".coi" 34.467339609417493;
+	setAttr ".coi" 33.009870009467079;
 	setAttr ".imn" -type "string" "persp";
 	setAttr ".den" -type "string" "persp_depth";
 	setAttr ".man" -type "string" "persp_mask";
@@ -142,125 +142,108 @@ createNode camera -s -n "sideShape" -p "side";
 	setAttr ".man" -type "string" "side_mask";
 	setAttr ".hc" -type "string" "viewSet -s %camera";
 	setAttr ".o" yes;
-createNode transform -n "Cauldren_Set";
+createNode transform -n "CauldrenSet2";
+createNode transform -n "TurbulentFlame3:nurbsTorus1" -p "CauldrenSet2";
+	setAttr ".t" -type "double3" -0.12631398339335964 1.7588780741293233 -0.056606841941594821 ;
+	setAttr ".s" -type "double3" 1.1707703689253397 1.1707703689253397 1.1707703689253397 ;
+createNode nurbsSurface -n "TurbulentFlame3:nurbsTorusShape1" -p "TurbulentFlame3:nurbsTorus1";
+	setAttr -k off ".v";
+	setAttr ".vir" yes;
+	setAttr ".vif" yes;
+	setAttr ".tw" yes;
+	setAttr ".dvu" 0;
+	setAttr ".dvv" 0;
+	setAttr ".cpr" 4;
+	setAttr ".cps" 4;
+	setAttr ".nufa" 4.5;
+	setAttr ".nvfa" 4.5;
+createNode fluidEmitter -n "TurbulentFlame3:fluidEmitter2" -p "TurbulentFlame3:nurbsTorus1";
+	setAttr ".emt" 2;
+	setAttr -k off ".rat";
+	setAttr -k off ".sro";
+	setAttr -l on -k off ".urpp";
+	setAttr -k off ".npuv";
+	setAttr ".max" 1;
+	setAttr -k off ".dx";
+	setAttr -k off ".dy";
+	setAttr -k off ".dz";
+	setAttr -k off ".spr";
+	setAttr -k off ".spd";
+	setAttr -k off ".srnd";
+	setAttr -k off ".tspd";
+	setAttr -k off ".nspd";
+	setAttr -k off ".afc";
+	setAttr -k off ".afa";
+	setAttr -k off ".alx";
+	setAttr -k off ".arx";
+	setAttr -k off ".rnd";
+	setAttr -k off ".drs";
+	setAttr -k off ".ssz";
+	setAttr -k off ".dss";
+	setAttr ".nzd" no;
+	setAttr ".trb" 5.7024;
+	setAttr ".fhe" 2;
+	setAttr ".ffe" 4;
+createNode transform -n "TurbulentFlame3:Flame" -p "CauldrenSet2";
+	setAttr ".t" -type "double3" -0.12631398339335964 3.8875392235472512 -0.056606841941594821 ;
+	setAttr ".s" -type "double3" 0.64056563832946567 0.64056563832946567 0.64056563832946567 ;
+createNode fluidShape -n "TurbulentFlame3:FlameShape" -p "TurbulentFlame3:Flame";
+	addAttr -ci true -sn "nts" -ln "notes" -dt "string";
+	setAttr -k off ".v";
+	setAttr ".rt" 1;
+	setAttr ".vf" 0;
+	setAttr ".vir" yes;
+	setAttr ".iss" yes;
+	setAttr ".rw" 30;
+	setAttr ".rh" 30;
+	setAttr ".rd" 30;
+	setAttr ".dw" 15;
+	setAttr ".dh" 15;
+	setAttr ".dd" 15;
+	setAttr ".ots" 2;
+	setAttr ".srs" 2;
+	setAttr ".dds" 0.3;
+	setAttr ".dsb" 9;
+	setAttr ".vsw" 10;
+	setAttr ".tst" 0.0099999997764825821;
+	setAttr ".tmet" 2;
+	setAttr ".tmsc" 1.9338400363922119;
+	setAttr ".buo" 9;
+	setAttr ".fmet" 2;
+	setAttr ".fesc" 1.966920018196106;
+	setAttr ".resp" 0.96692001819610596;
+	setAttr ".qua" 2;
+	setAttr ".rin" 3;
+	setAttr ".cl[0].clp" 0;
+	setAttr ".cl[0].clc" -type "float3" 0 0 0 ;
+	setAttr ".cl[0].cli" 1;
+	setAttr -s 4 ".opa[1:4]"  0.85699999 0 3 0.13600001 0 3 0.15000001
+		 0.89999998 1 0.34285715 0.62 3;
+	setAttr ".oib" 0.31527999043464661;
+	setAttr ".t" -type "float3" 0.77200001 0.77200001 0.77200001 ;
+	setAttr ".lbrt" 3;
+	setAttr ".abrt" 1;
+	setAttr ".adfu" 3;
+	setAttr -s 2 ".i";
+	setAttr ".i[0].ip" 0.8571428656578064;
+	setAttr ".i[0].ic" -type "float3" 0 0 0 ;
+	setAttr ".i[0].ii" 1;
+	setAttr ".i[2].ip" 0.1428571492433548;
+	setAttr ".i[2].ic" -type "float3" 20 7.7750001 3.7 ;
+	setAttr ".i[2].ii" 2;
+	setAttr ".iib" -0.20000000298023224;
+	setAttr ".env[0].envp" 0;
+	setAttr ".env[0].envc" -type "float3" 0 0 0 ;
+	setAttr ".env[0].envi" 1;
+	setAttr ".dos" 1;
+	setAttr ".edr" 0.44629999995231628;
+	setAttr ".nts" -type "string" "Example Goal:\nRealistic looking fire.\n\nBasic Construction:\nDensity emits from the surface of a NURBS torus.\nAll contents methods are defined as Dynamic Grid (except for color,  which uses shading color).\nBoth Density and Temperature have high Buoyancy values.\nSwirl and Turbulence values provide detailed dynamic motion.\nThe shading has a high Transparency value with a sphere Dropoff Shape.\nTemperature is the Incandescence Input.\nDensity as the Opacity Input defines the shape of the fire.\nThe built-in fluid texture is not used. \n\nFiner Points:\nUse a high Shading Quality value and select Smooth for the Render Interpolator for a better render result, although it will take longer to render.\nRender using TurbulentFlameCamera.\nRender Time: $";
+createNode transform -n "Cauldren_Set" -p "CauldrenSet2";
 createNode transform -n "Cauldren" -p "Cauldren_Set";
 	setAttr ".t" -type "double3" -0.19732088732843756 2.9944436176089355 -0.09252889481841825 ;
 	setAttr ".r" -type "double3" -180 169.99999999999966 0 ;
 	setAttr ".s" -type "double3" 0.54675696217446068 0.54675696217446068 0.54675696217446068 ;
 createNode mesh -n "CauldrenShape" -p "Cauldren";
-	setAttr -k off ".v";
-	setAttr ".vir" yes;
-	setAttr ".vif" yes;
-	setAttr ".uvst[0].uvsn" -type "string" "map1";
-	setAttr ".cuvs" -type "string" "map1";
-	setAttr ".dcc" -type "string" "Ambient+Diffuse";
-	setAttr ".covm[0]"  0 1 1;
-	setAttr ".cdvm[0]"  0 1 1;
-createNode transform -n "strokeFlameFine1" -p "Cauldren_Set";
-	setAttr ".t" -type "double3" 0.15674623941518256 1.708658185983754 -10.877798675559267 ;
-	setAttr ".s" -type "double3" 2.7656707427503795 917.51352485965833 2.6930953017280408 ;
-createNode stroke -n "strokeShapeFlameFine1" -p "strokeFlameFine1";
-	setAttr -k off ".v" no;
-	setAttr ".dpc" 100;
-	setAttr ".sed" 1;
-	setAttr ".mvbs" 53718;
-	setAttr ".mpl" 100000;
-	setAttr ".usn" yes;
-	setAttr ".nml" -type "double3" 0 1 0 ;
-	setAttr ".pcv[0].smp" 63;
-	setAttr ".spm1" 8;
-	setAttr ".ps1" 0.1057000011;
-	setAttr ".px1" 0.94309997560000003;
-	setAttr ".spm2" 7;
-	setAttr ".ps2" 0.500015;
-	setAttr ".px2" 2.5;
-	setAttr ".spm3" 5;
-	setAttr ".ps3" 0.1463000029;
-	setAttr ".psc[0]"  0 1 1;
-	setAttr -s 63 ".psr[0:62]"  1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 
-		1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 
-		1 1;
-createNode transform -n "curveFlameFine" -p "Cauldren_Set";
-	setAttr ".v" no;
-createNode nurbsCurve -n "curveFlameFineShape" -p "curveFlameFine";
-	setAttr -k off ".v";
-	setAttr ".cc" -type "nurbsCurve" 
-		2 61 0 no 3
-		64 0 0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26
-		 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53
-		 54 55 56 57 58 59 60 61 61
-		63
-		-0.158973 0 4.0104259999999998
-		-0.094889100000000004 0 4.0007710000000003
-		0.01089 0 4.040699
-		0.105699 0 4.063008
-		0.19075300000000001 0 4.1289100000000003
-		0.25829099999999999 0 4.2178190000000004
-		0.21526200000000001 0 4.2720729999999998
-		0.147179 0 4.3154830000000004
-		0.085229200000000005 0 4.3570149999999996
-		0.022706400000000002 0 4.4001380000000001
-		-0.049962100000000002 0 4.4235850000000001
-		-0.143653 0 4.3587689999999997
-		-0.237872 0 4.2781039999999999
-		-0.328565 0 4.194985
-		-0.40718399999999999 0 4.1051960000000003
-		-0.438971 0 4.0081720000000001
-		-0.409993 0 3.9349759999999998
-		-0.37379200000000001 0 3.8681009999999998
-		-0.331706 0 3.8078599999999998
-		-0.30083799999999999 0 3.7364220000000001
-		-0.2752 0 3.659198
-		-0.20890500000000001 0 3.618112
-		-0.12684899999999999 0 3.613029
-		-0.031364000000000003 0 3.6622569999999999
-		0.048749199999999999 0 3.7499129999999998
-		0.12434000000000001 0 3.8470490000000002
-		0.196801 0 3.9391400000000001
-		0.25544600000000001 0 4.0363660000000001
-		0.29123900000000003 0 4.1340719999999997
-		0.312946 0 4.2314809999999996
-		0.30304300000000001 0 4.3118470000000002
-		0.25628000000000001 0 4.3739800000000004
-		0.19765099999999999 0 4.4231299999999996
-		0.149759 0 4.4819930000000001
-		0.087861099999999998 0 4.5227550000000001
-		0.023626500000000002 0 4.5542340000000001
-		-0.066302399999999997 0 4.5305710000000001
-		-0.15639800000000001 0 4.4938830000000003
-		-0.24845 0 4.4384379999999997
-		-0.33378099999999999 0 4.3616400000000004
-		-0.41470099999999999 0 4.2638170000000004
-		-0.48916599999999999 0 4.1750230000000004
-		-0.56634300000000004 0 4.0828939999999996
-		-0.64246400000000004 0 3.9920140000000002
-		-0.69226900000000002 0 3.890889
-		-0.73292100000000004 0 3.7874439999999998
-		-0.69096999999999997 0 3.7289720000000002
-		-0.64948099999999998 0 3.6636470000000001
-		-0.58683399999999997 0 3.623081
-		-0.53419300000000003 0 3.5668959999999998
-		-0.48112700000000003 0 3.5118070000000001
-		-0.405337 0 3.48291
-		-0.31100499999999998 0 3.5104609999999998
-		-0.20713999999999999 0 3.5539649999999998
-		-0.108892 0 3.6102379999999998
-		-0.0148586 0 3.666779
-		0.058657099999999997 0 3.763217
-		0.13340099999999999 0 3.8585319999999999
-		0.18462899999999999 0 3.9533480000000001
-		0.17071900000000001 0 4.0396320000000001
-		0.12180299999999999 0 4.0969170000000004
-		0.059828699999999999 0 4.1366209999999999
-		-0.019151000000000001 0 4.1309480000000001
-		;
-createNode transform -n "flameFine1MeshGroup" -p "Cauldren_Set";
-	setAttr ".it" no;
-createNode transform -n "flameFine1Main" -p "flameFine1MeshGroup";
-	setAttr ".t" -type "double3" -0.1813461979864201 -0.76807610535752568 0.25556428539957177 ;
-	setAttr ".r" -type "double3" 0 260 0 ;
-	setAttr ".s" -type "double3" 0.85610347158410294 1.3030679693929932 1.0705189371052291 ;
-createNode mesh -n "flameFine1MainShape" -p "flameFine1Main";
 	setAttr -k off ".v";
 	setAttr ".vir" yes;
 	setAttr ".vif" yes;
@@ -452,8 +435,8 @@ createNode mentalrayOptions -s -n "miDefaultOptions";
 	setAttr ".stringOptions[44].type" -type "string" "string";
 createNode mentalrayFramebuffer -s -n "miDefaultFramebuffer";
 createNode lightLinker -s -n "lightLinker1";
-	setAttr -s 19 ".lnk";
-	setAttr -s 19 ".slnk";
+	setAttr -s 26 ".lnk";
+	setAttr -s 26 ".slnk";
 createNode displayLayerManager -n "layerManager";
 createNode displayLayer -n "defaultLayer";
 createNode renderLayerManager -n "renderLayerManager";
@@ -522,12 +505,12 @@ createNode script -n "uiConfigurationScriptNode";
 		+ "                -animateTransition 0\n                -showRelationships 1\n                -showShapes 0\n                -showDeformers 0\n                -showExpressions 0\n                -showConstraints 0\n                -showConnectionFromSelected 0\n                -showConnectionToSelected 0\n                -showUnderworld 0\n                -showInvisible 0\n                -transitionFrames 1\n                -opaqueContainers 0\n                -freeform 0\n                -imagePosition 0 0 \n                -imageScale 1\n                -imageEnabled 0\n                -graphType \"DAG\" \n                -heatMapDisplay 0\n                -updateSelection 1\n                -updateNodeAdded 1\n                -useDrawOverrideColor 0\n                -limitGraphTraversal -1\n                -range 0 0 \n                -iconSize \"smallIcons\" \n                -showCachedConnections 0\n                $editorName;\n\t\t}\n\t} else {\n\t\t$label = `panel -q -label $panelName`;\n\t\tscriptedPanel -edit -l (localizedPanelLabel(\"Hypergraph Hierarchy\")) -mbv $menusOkayInPanels  $panelName;\n"
 		+ "\t\t\t$editorName = ($panelName+\"HyperGraphEd\");\n            hyperGraph -e \n                -graphLayoutStyle \"hierarchicalLayout\" \n                -orientation \"horiz\" \n                -mergeConnections 0\n                -zoom 1\n                -animateTransition 0\n                -showRelationships 1\n                -showShapes 0\n                -showDeformers 0\n                -showExpressions 0\n                -showConstraints 0\n                -showConnectionFromSelected 0\n                -showConnectionToSelected 0\n                -showUnderworld 0\n                -showInvisible 0\n                -transitionFrames 1\n                -opaqueContainers 0\n                -freeform 0\n                -imagePosition 0 0 \n                -imageScale 1\n                -imageEnabled 0\n                -graphType \"DAG\" \n                -heatMapDisplay 0\n                -updateSelection 1\n                -updateNodeAdded 1\n                -useDrawOverrideColor 0\n                -limitGraphTraversal -1\n                -range 0 0 \n"
 		+ "                -iconSize \"smallIcons\" \n                -showCachedConnections 0\n                $editorName;\n\t\tif (!$useSceneConfig) {\n\t\t\tpanel -e -l $label $panelName;\n\t\t}\n\t}\n\n\n\t$panelName = `sceneUIReplacement -getNextScriptedPanel \"hyperShadePanel\" (localizedPanelLabel(\"Hypershade\")) `;\n\tif (\"\" == $panelName) {\n\t\tif ($useSceneConfig) {\n\t\t\t$panelName = `scriptedPanel -unParent  -type \"hyperShadePanel\" -l (localizedPanelLabel(\"Hypershade\")) -mbv $menusOkayInPanels `;\n\t\t}\n\t} else {\n\t\t$label = `panel -q -label $panelName`;\n\t\tscriptedPanel -edit -l (localizedPanelLabel(\"Hypershade\")) -mbv $menusOkayInPanels  $panelName;\n\t\tif (!$useSceneConfig) {\n\t\t\tpanel -e -l $label $panelName;\n\t\t}\n\t}\n\tif ($useSceneConfig) {\n\t\tscriptedPanel -e -to $panelName;\n\t}\n\n\n\t$panelName = `sceneUIReplacement -getNextScriptedPanel \"visorPanel\" (localizedPanelLabel(\"Visor\")) `;\n\tif (\"\" == $panelName) {\n\t\tif ($useSceneConfig) {\n\t\t\t$panelName = `scriptedPanel -unParent  -type \"visorPanel\" -l (localizedPanelLabel(\"Visor\")) -mbv $menusOkayInPanels `;\n"
-		+ "\t\t}\n\t} else {\n\t\t$label = `panel -q -label $panelName`;\n\t\tscriptedPanel -edit -l (localizedPanelLabel(\"Visor\")) -mbv $menusOkayInPanels  $panelName;\n\t\tif (!$useSceneConfig) {\n\t\t\tpanel -e -l $label $panelName;\n\t\t}\n\t}\n\n\n\t$panelName = `sceneUIReplacement -getNextScriptedPanel \"nodeEditorPanel\" (localizedPanelLabel(\"Node Editor\")) `;\n\tif (\"\" == $panelName) {\n\t\tif ($useSceneConfig) {\n\t\t\t$panelName = `scriptedPanel -unParent  -type \"nodeEditorPanel\" -l (localizedPanelLabel(\"Node Editor\")) -mbv $menusOkayInPanels `;\n\n\t\t\t$editorName = ($panelName+\"NodeEditorEd\");\n            nodeEditor -e \n                -allAttributes 0\n                -allNodes 0\n                -autoSizeNodes 1\n                -createNodeCommand \"nodeEdCreateNodeCommand\" \n                -defaultPinnedState 0\n                -ignoreAssets 1\n                -additiveGraphingMode 0\n                -settingsChangedCallback \"nodeEdSyncControls\" \n                -traversalDepthLimit -1\n                -keyPressCommand \"nodeEdKeyPressCommand\" \n                -keyReleaseCommand \"nodeEdKeyReleaseCommand\" \n"
-		+ "                -nodeTitleMode \"name\" \n                -gridSnap 0\n                -gridVisibility 1\n                -popupMenuScript \"nodeEdBuildPanelMenus\" \n                -island 0\n                -showNamespace 1\n                -showShapes 1\n                -showSGShapes 0\n                -showTransforms 1\n                -syncedSelection 1\n                -extendToShapes 1\n                $editorName;;\n\t\t}\n\t} else {\n\t\t$label = `panel -q -label $panelName`;\n\t\tscriptedPanel -edit -l (localizedPanelLabel(\"Node Editor\")) -mbv $menusOkayInPanels  $panelName;\n\n\t\t\t$editorName = ($panelName+\"NodeEditorEd\");\n            nodeEditor -e \n                -allAttributes 0\n                -allNodes 0\n                -autoSizeNodes 1\n                -createNodeCommand \"nodeEdCreateNodeCommand\" \n                -defaultPinnedState 0\n                -ignoreAssets 1\n                -additiveGraphingMode 0\n                -settingsChangedCallback \"nodeEdSyncControls\" \n                -traversalDepthLimit -1\n                -keyPressCommand \"nodeEdKeyPressCommand\" \n"
-		+ "                -keyReleaseCommand \"nodeEdKeyReleaseCommand\" \n                -nodeTitleMode \"name\" \n                -gridSnap 0\n                -gridVisibility 1\n                -popupMenuScript \"nodeEdBuildPanelMenus\" \n                -island 0\n                -showNamespace 1\n                -showShapes 1\n                -showSGShapes 0\n                -showTransforms 1\n                -syncedSelection 1\n                -extendToShapes 1\n                $editorName;;\n\t\tif (!$useSceneConfig) {\n\t\t\tpanel -e -l $label $panelName;\n\t\t}\n\t}\n\n\n\t$panelName = `sceneUIReplacement -getNextScriptedPanel \"createNodePanel\" (localizedPanelLabel(\"Create Node\")) `;\n\tif (\"\" == $panelName) {\n\t\tif ($useSceneConfig) {\n\t\t\t$panelName = `scriptedPanel -unParent  -type \"createNodePanel\" -l (localizedPanelLabel(\"Create Node\")) -mbv $menusOkayInPanels `;\n\t\t}\n\t} else {\n\t\t$label = `panel -q -label $panelName`;\n\t\tscriptedPanel -edit -l (localizedPanelLabel(\"Create Node\")) -mbv $menusOkayInPanels  $panelName;\n\t\tif (!$useSceneConfig) {\n\t\t\tpanel -e -l $label $panelName;\n"
-		+ "\t\t}\n\t}\n\n\n\t$panelName = `sceneUIReplacement -getNextScriptedPanel \"polyTexturePlacementPanel\" (localizedPanelLabel(\"UV Texture Editor\")) `;\n\tif (\"\" == $panelName) {\n\t\tif ($useSceneConfig) {\n\t\t\t$panelName = `scriptedPanel -unParent  -type \"polyTexturePlacementPanel\" -l (localizedPanelLabel(\"UV Texture Editor\")) -mbv $menusOkayInPanels `;\n\t\t}\n\t} else {\n\t\t$label = `panel -q -label $panelName`;\n\t\tscriptedPanel -edit -l (localizedPanelLabel(\"UV Texture Editor\")) -mbv $menusOkayInPanels  $panelName;\n\t\tif (!$useSceneConfig) {\n\t\t\tpanel -e -l $label $panelName;\n\t\t}\n\t}\n\n\n\t$panelName = `sceneUIReplacement -getNextScriptedPanel \"renderWindowPanel\" (localizedPanelLabel(\"Render View\")) `;\n\tif (\"\" == $panelName) {\n\t\tif ($useSceneConfig) {\n\t\t\t$panelName = `scriptedPanel -unParent  -type \"renderWindowPanel\" -l (localizedPanelLabel(\"Render View\")) -mbv $menusOkayInPanels `;\n\t\t}\n\t} else {\n\t\t$label = `panel -q -label $panelName`;\n\t\tscriptedPanel -edit -l (localizedPanelLabel(\"Render View\")) -mbv $menusOkayInPanels  $panelName;\n\t\tif (!$useSceneConfig) {\n"
-		+ "\t\t\tpanel -e -l $label $panelName;\n\t\t}\n\t}\n\n\n\t$panelName = `sceneUIReplacement -getNextPanel \"blendShapePanel\" (localizedPanelLabel(\"Blend Shape\")) `;\n\tif (\"\" == $panelName) {\n\t\tif ($useSceneConfig) {\n\t\t\tblendShapePanel -unParent -l (localizedPanelLabel(\"Blend Shape\")) -mbv $menusOkayInPanels ;\n\t\t}\n\t} else {\n\t\t$label = `panel -q -label $panelName`;\n\t\tblendShapePanel -edit -l (localizedPanelLabel(\"Blend Shape\")) -mbv $menusOkayInPanels  $panelName;\n\t\tif (!$useSceneConfig) {\n\t\t\tpanel -e -l $label $panelName;\n\t\t}\n\t}\n\n\n\t$panelName = `sceneUIReplacement -getNextScriptedPanel \"dynRelEdPanel\" (localizedPanelLabel(\"Dynamic Relationships\")) `;\n\tif (\"\" == $panelName) {\n\t\tif ($useSceneConfig) {\n\t\t\t$panelName = `scriptedPanel -unParent  -type \"dynRelEdPanel\" -l (localizedPanelLabel(\"Dynamic Relationships\")) -mbv $menusOkayInPanels `;\n\t\t}\n\t} else {\n\t\t$label = `panel -q -label $panelName`;\n\t\tscriptedPanel -edit -l (localizedPanelLabel(\"Dynamic Relationships\")) -mbv $menusOkayInPanels  $panelName;\n\t\tif (!$useSceneConfig) {\n\t\t\tpanel -e -l $label $panelName;\n"
-		+ "\t\t}\n\t}\n\n\n\t$panelName = `sceneUIReplacement -getNextScriptedPanel \"relationshipPanel\" (localizedPanelLabel(\"Relationship Editor\")) `;\n\tif (\"\" == $panelName) {\n\t\tif ($useSceneConfig) {\n\t\t\t$panelName = `scriptedPanel -unParent  -type \"relationshipPanel\" -l (localizedPanelLabel(\"Relationship Editor\")) -mbv $menusOkayInPanels `;\n\t\t}\n\t} else {\n\t\t$label = `panel -q -label $panelName`;\n\t\tscriptedPanel -edit -l (localizedPanelLabel(\"Relationship Editor\")) -mbv $menusOkayInPanels  $panelName;\n\t\tif (!$useSceneConfig) {\n\t\t\tpanel -e -l $label $panelName;\n\t\t}\n\t}\n\n\n\t$panelName = `sceneUIReplacement -getNextScriptedPanel \"referenceEditorPanel\" (localizedPanelLabel(\"Reference Editor\")) `;\n\tif (\"\" == $panelName) {\n\t\tif ($useSceneConfig) {\n\t\t\t$panelName = `scriptedPanel -unParent  -type \"referenceEditorPanel\" -l (localizedPanelLabel(\"Reference Editor\")) -mbv $menusOkayInPanels `;\n\t\t}\n\t} else {\n\t\t$label = `panel -q -label $panelName`;\n\t\tscriptedPanel -edit -l (localizedPanelLabel(\"Reference Editor\")) -mbv $menusOkayInPanels  $panelName;\n"
+		+ "\t\t}\n\t} else {\n\t\t$label = `panel -q -label $panelName`;\n\t\tscriptedPanel -edit -l (localizedPanelLabel(\"Visor\")) -mbv $menusOkayInPanels  $panelName;\n\t\tif (!$useSceneConfig) {\n\t\t\tpanel -e -l $label $panelName;\n\t\t}\n\t}\n\tif ($useSceneConfig) {\n\t\tscriptedPanel -e -to $panelName;\n\t}\n\n\n\t$panelName = `sceneUIReplacement -getNextScriptedPanel \"nodeEditorPanel\" (localizedPanelLabel(\"Node Editor\")) `;\n\tif (\"\" == $panelName) {\n\t\tif ($useSceneConfig) {\n\t\t\t$panelName = `scriptedPanel -unParent  -type \"nodeEditorPanel\" -l (localizedPanelLabel(\"Node Editor\")) -mbv $menusOkayInPanels `;\n\n\t\t\t$editorName = ($panelName+\"NodeEditorEd\");\n            nodeEditor -e \n                -allAttributes 0\n                -allNodes 0\n                -autoSizeNodes 1\n                -createNodeCommand \"nodeEdCreateNodeCommand\" \n                -defaultPinnedState 0\n                -ignoreAssets 1\n                -additiveGraphingMode 0\n                -settingsChangedCallback \"nodeEdSyncControls\" \n                -traversalDepthLimit -1\n                -keyPressCommand \"nodeEdKeyPressCommand\" \n"
+		+ "                -keyReleaseCommand \"nodeEdKeyReleaseCommand\" \n                -nodeTitleMode \"name\" \n                -gridSnap 0\n                -gridVisibility 1\n                -popupMenuScript \"nodeEdBuildPanelMenus\" \n                -island 0\n                -showNamespace 1\n                -showShapes 1\n                -showSGShapes 0\n                -showTransforms 1\n                -syncedSelection 1\n                -extendToShapes 1\n                $editorName;;\n\t\t}\n\t} else {\n\t\t$label = `panel -q -label $panelName`;\n\t\tscriptedPanel -edit -l (localizedPanelLabel(\"Node Editor\")) -mbv $menusOkayInPanels  $panelName;\n\n\t\t\t$editorName = ($panelName+\"NodeEditorEd\");\n            nodeEditor -e \n                -allAttributes 0\n                -allNodes 0\n                -autoSizeNodes 1\n                -createNodeCommand \"nodeEdCreateNodeCommand\" \n                -defaultPinnedState 0\n                -ignoreAssets 1\n                -additiveGraphingMode 0\n                -settingsChangedCallback \"nodeEdSyncControls\" \n"
+		+ "                -traversalDepthLimit -1\n                -keyPressCommand \"nodeEdKeyPressCommand\" \n                -keyReleaseCommand \"nodeEdKeyReleaseCommand\" \n                -nodeTitleMode \"name\" \n                -gridSnap 0\n                -gridVisibility 1\n                -popupMenuScript \"nodeEdBuildPanelMenus\" \n                -island 0\n                -showNamespace 1\n                -showShapes 1\n                -showSGShapes 0\n                -showTransforms 1\n                -syncedSelection 1\n                -extendToShapes 1\n                $editorName;;\n\t\tif (!$useSceneConfig) {\n\t\t\tpanel -e -l $label $panelName;\n\t\t}\n\t}\n\n\n\t$panelName = `sceneUIReplacement -getNextScriptedPanel \"createNodePanel\" (localizedPanelLabel(\"Create Node\")) `;\n\tif (\"\" == $panelName) {\n\t\tif ($useSceneConfig) {\n\t\t\t$panelName = `scriptedPanel -unParent  -type \"createNodePanel\" -l (localizedPanelLabel(\"Create Node\")) -mbv $menusOkayInPanels `;\n\t\t}\n\t} else {\n\t\t$label = `panel -q -label $panelName`;\n\t\tscriptedPanel -edit -l (localizedPanelLabel(\"Create Node\")) -mbv $menusOkayInPanels  $panelName;\n"
+		+ "\t\tif (!$useSceneConfig) {\n\t\t\tpanel -e -l $label $panelName;\n\t\t}\n\t}\n\n\n\t$panelName = `sceneUIReplacement -getNextScriptedPanel \"polyTexturePlacementPanel\" (localizedPanelLabel(\"UV Texture Editor\")) `;\n\tif (\"\" == $panelName) {\n\t\tif ($useSceneConfig) {\n\t\t\t$panelName = `scriptedPanel -unParent  -type \"polyTexturePlacementPanel\" -l (localizedPanelLabel(\"UV Texture Editor\")) -mbv $menusOkayInPanels `;\n\t\t}\n\t} else {\n\t\t$label = `panel -q -label $panelName`;\n\t\tscriptedPanel -edit -l (localizedPanelLabel(\"UV Texture Editor\")) -mbv $menusOkayInPanels  $panelName;\n\t\tif (!$useSceneConfig) {\n\t\t\tpanel -e -l $label $panelName;\n\t\t}\n\t}\n\n\n\t$panelName = `sceneUIReplacement -getNextScriptedPanel \"renderWindowPanel\" (localizedPanelLabel(\"Render View\")) `;\n\tif (\"\" == $panelName) {\n\t\tif ($useSceneConfig) {\n\t\t\t$panelName = `scriptedPanel -unParent  -type \"renderWindowPanel\" -l (localizedPanelLabel(\"Render View\")) -mbv $menusOkayInPanels `;\n\t\t}\n\t} else {\n\t\t$label = `panel -q -label $panelName`;\n\t\tscriptedPanel -edit -l (localizedPanelLabel(\"Render View\")) -mbv $menusOkayInPanels  $panelName;\n"
+		+ "\t\tif (!$useSceneConfig) {\n\t\t\tpanel -e -l $label $panelName;\n\t\t}\n\t}\n\n\n\t$panelName = `sceneUIReplacement -getNextPanel \"blendShapePanel\" (localizedPanelLabel(\"Blend Shape\")) `;\n\tif (\"\" == $panelName) {\n\t\tif ($useSceneConfig) {\n\t\t\tblendShapePanel -unParent -l (localizedPanelLabel(\"Blend Shape\")) -mbv $menusOkayInPanels ;\n\t\t}\n\t} else {\n\t\t$label = `panel -q -label $panelName`;\n\t\tblendShapePanel -edit -l (localizedPanelLabel(\"Blend Shape\")) -mbv $menusOkayInPanels  $panelName;\n\t\tif (!$useSceneConfig) {\n\t\t\tpanel -e -l $label $panelName;\n\t\t}\n\t}\n\n\n\t$panelName = `sceneUIReplacement -getNextScriptedPanel \"dynRelEdPanel\" (localizedPanelLabel(\"Dynamic Relationships\")) `;\n\tif (\"\" == $panelName) {\n\t\tif ($useSceneConfig) {\n\t\t\t$panelName = `scriptedPanel -unParent  -type \"dynRelEdPanel\" -l (localizedPanelLabel(\"Dynamic Relationships\")) -mbv $menusOkayInPanels `;\n\t\t}\n\t} else {\n\t\t$label = `panel -q -label $panelName`;\n\t\tscriptedPanel -edit -l (localizedPanelLabel(\"Dynamic Relationships\")) -mbv $menusOkayInPanels  $panelName;\n\t\tif (!$useSceneConfig) {\n"
+		+ "\t\t\tpanel -e -l $label $panelName;\n\t\t}\n\t}\n\n\n\t$panelName = `sceneUIReplacement -getNextScriptedPanel \"relationshipPanel\" (localizedPanelLabel(\"Relationship Editor\")) `;\n\tif (\"\" == $panelName) {\n\t\tif ($useSceneConfig) {\n\t\t\t$panelName = `scriptedPanel -unParent  -type \"relationshipPanel\" -l (localizedPanelLabel(\"Relationship Editor\")) -mbv $menusOkayInPanels `;\n\t\t}\n\t} else {\n\t\t$label = `panel -q -label $panelName`;\n\t\tscriptedPanel -edit -l (localizedPanelLabel(\"Relationship Editor\")) -mbv $menusOkayInPanels  $panelName;\n\t\tif (!$useSceneConfig) {\n\t\t\tpanel -e -l $label $panelName;\n\t\t}\n\t}\n\n\n\t$panelName = `sceneUIReplacement -getNextScriptedPanel \"referenceEditorPanel\" (localizedPanelLabel(\"Reference Editor\")) `;\n\tif (\"\" == $panelName) {\n\t\tif ($useSceneConfig) {\n\t\t\t$panelName = `scriptedPanel -unParent  -type \"referenceEditorPanel\" -l (localizedPanelLabel(\"Reference Editor\")) -mbv $menusOkayInPanels `;\n\t\t}\n\t} else {\n\t\t$label = `panel -q -label $panelName`;\n\t\tscriptedPanel -edit -l (localizedPanelLabel(\"Reference Editor\")) -mbv $menusOkayInPanels  $panelName;\n"
 		+ "\t\tif (!$useSceneConfig) {\n\t\t\tpanel -e -l $label $panelName;\n\t\t}\n\t}\n\n\n\t$panelName = `sceneUIReplacement -getNextScriptedPanel \"componentEditorPanel\" (localizedPanelLabel(\"Component Editor\")) `;\n\tif (\"\" == $panelName) {\n\t\tif ($useSceneConfig) {\n\t\t\t$panelName = `scriptedPanel -unParent  -type \"componentEditorPanel\" -l (localizedPanelLabel(\"Component Editor\")) -mbv $menusOkayInPanels `;\n\t\t}\n\t} else {\n\t\t$label = `panel -q -label $panelName`;\n\t\tscriptedPanel -edit -l (localizedPanelLabel(\"Component Editor\")) -mbv $menusOkayInPanels  $panelName;\n\t\tif (!$useSceneConfig) {\n\t\t\tpanel -e -l $label $panelName;\n\t\t}\n\t}\n\n\n\t$panelName = `sceneUIReplacement -getNextScriptedPanel \"dynPaintScriptedPanelType\" (localizedPanelLabel(\"Paint Effects\")) `;\n\tif (\"\" == $panelName) {\n\t\tif ($useSceneConfig) {\n\t\t\t$panelName = `scriptedPanel -unParent  -type \"dynPaintScriptedPanelType\" -l (localizedPanelLabel(\"Paint Effects\")) -mbv $menusOkayInPanels `;\n\t\t}\n\t} else {\n\t\t$label = `panel -q -label $panelName`;\n\t\tscriptedPanel -edit -l (localizedPanelLabel(\"Paint Effects\")) -mbv $menusOkayInPanels  $panelName;\n"
 		+ "\t\tif (!$useSceneConfig) {\n\t\t\tpanel -e -l $label $panelName;\n\t\t}\n\t}\n\n\n\t$panelName = `sceneUIReplacement -getNextScriptedPanel \"scriptEditorPanel\" (localizedPanelLabel(\"Script Editor\")) `;\n\tif (\"\" == $panelName) {\n\t\tif ($useSceneConfig) {\n\t\t\t$panelName = `scriptedPanel -unParent  -type \"scriptEditorPanel\" -l (localizedPanelLabel(\"Script Editor\")) -mbv $menusOkayInPanels `;\n\t\t}\n\t} else {\n\t\t$label = `panel -q -label $panelName`;\n\t\tscriptedPanel -edit -l (localizedPanelLabel(\"Script Editor\")) -mbv $menusOkayInPanels  $panelName;\n\t\tif (!$useSceneConfig) {\n\t\t\tpanel -e -l $label $panelName;\n\t\t}\n\t}\n\n\n\t$panelName = `sceneUIReplacement -getNextScriptedPanel \"Stereo\" (localizedPanelLabel(\"Stereo\")) `;\n\tif (\"\" == $panelName) {\n\t\tif ($useSceneConfig) {\n\t\t\t$panelName = `scriptedPanel -unParent  -type \"Stereo\" -l (localizedPanelLabel(\"Stereo\")) -mbv $menusOkayInPanels `;\nstring $editorName = ($panelName+\"Editor\");\n            stereoCameraView -e \n                -camera \"persp\" \n                -useInteractiveMode 0\n                -displayLights \"default\" \n"
 		+ "                -displayAppearance \"wireframe\" \n                -activeOnly 0\n                -ignorePanZoom 0\n                -wireframeOnShaded 0\n                -headsUpDisplay 1\n                -selectionHiliteDisplay 1\n                -useDefaultMaterial 0\n                -bufferMode \"double\" \n                -twoSidedLighting 1\n                -backfaceCulling 0\n                -xray 0\n                -jointXray 0\n                -activeComponentsXray 0\n                -displayTextures 0\n                -smoothWireframe 0\n                -lineWidth 1\n                -textureAnisotropic 0\n                -textureHilight 1\n                -textureSampling 2\n                -textureDisplay \"modulate\" \n                -textureMaxSize 16384\n                -fogging 0\n                -fogSource \"fragment\" \n                -fogMode \"linear\" \n                -fogStart 0\n                -fogEnd 100\n                -fogDensity 0.1\n                -fogColor 0.5 0.5 0.5 1 \n                -maxConstantTransparency 1\n"
@@ -699,87 +682,6 @@ createNode materialInfo -n "TurbulentFlame:materialInfo1";
 createNode shadingEngine -n "TurbulentFlame:fluidShape1SG";
 	setAttr ".ihi" 0;
 	setAttr ".ro" yes;
-createNode brush -n "flameFine1";
-	setAttr ".gsc" 4.4614064564999998;
-	setAttr ".dep" yes;
-	setAttr ".bwd" 0.093496;
-	setAttr ".sdn" 4;
-	setAttr ".sft" 0.17886;
-	setAttr ".cl1" -type "float3" 0.13333334 0.094117649 0.015686274 ;
-	setAttr ".cl2" -type "float3" 0.047058824 0 0 ;
-	setAttr ".tn1" -type "float3" 0.96470588 0.96470588 0.96470588 ;
-	setAttr ".tn2" -type "float3" 0.98431373 0.98431373 0.98431373 ;
-	setAttr ".in1" -type "float3" 0.06666667 0.050980393 0 ;
-	setAttr ".in2" -type "float3" 0.047058824 0 0 ;
-	setAttr ".spc" -type "float3" 0 0 0 ;
-	setAttr ".glc" -type "float3" 1 0.86016136 0.59574473 ;
-	setAttr ".gls" 3.561;
-	setAttr ".chr" 0.07766;
-	setAttr ".csr" 0.36894;
-	setAttr ".cvr" 0.88618;
-	setAttr ".rfd" 0.22764;
-	setAttr ".tfd" 0.6602;
-	setAttr ".rll" yes;
-	setAttr ".gsz" 0.41748;
-	setAttr ".grn" 1;
-	setAttr ".fws" 2;
-	setAttr ".tub" yes;
-	setAttr ".tps" 20;
-	setAttr ".lnx" 0.1626;
-	setAttr ".lnn" 0.1;
-	setAttr ".sgm" 18;
-	setAttr ".tw1" 0.027642;
-	setAttr ".tw2" 0.007318;
-	setAttr ".wdr" 0.64078;
-	setAttr ".wdb" -0.49592;
-	setAttr ".lfx" 0.61788;
-	setAttr ".sgb" 0.08944;
-	setAttr ".elm" -0.6608000476;
-	setAttr ".elx" 1;
-	setAttr ".azn" -0.39836;
-	setAttr ".azx" 0.3496;
-	setAttr ".wgf" 5;
-	setAttr ".srd" 0.187;
-	setAttr ".spa" 27.804;
-	setAttr ".nbr" 3;
-	setAttr ".bdr" 0.6504;
-	setAttr ".trt" 2;
-	setAttr ".tin" 2;
-	setAttr ".tur" 0.75728;
-	setAttr ".trf" 12.0323;
-	setAttr ".trs" 0.58252;
-	setAttr ".grv" -0.45166;
-	setAttr ".mmt" 0.29268;
-	setAttr ".lcl[0]"  0 0.5 1;
-	setAttr ".pcl[0]"  0 0.5 1;
-	setAttr ".smp" 0;
-	setAttr ".al1" 0;
-	setAttr ".al2" 1;
-	setAttr ".wsc[0]"  0 1 1;
-	setAttr ".lws[0]"  0 1 1;
-	setAttr ".pws[0]"  0 1 1;
-	setAttr ".tls[0]"  0 1 1;
-	setAttr -s 3 ".env";
-	setAttr ".env[0].envp" 0.20000000298023224;
-	setAttr ".env[0].envc" -type "float3" 0 0 0.15000001 ;
-	setAttr ".env[0].envi" 1;
-	setAttr ".env[1].envp" 0.5;
-	setAttr ".env[1].envc" -type "float3" 0.47999999 0.55000001 0.69999999 ;
-	setAttr ".env[1].envi" 1;
-	setAttr ".env[2].envp" 1;
-	setAttr ".env[2].envc" -type "float3" 0 0.1 0.44999999 ;
-	setAttr ".env[2].envi" 1;
-	setAttr ".rro[0]"  0 1 1;
-createNode phong -n "flameFine1Shader";
-	setAttr ".it" -type "float3" 0.97450984 0.97450984 0.97450984 ;
-	setAttr ".ic" -type "float3" 0.056862749 0.025490196 0 ;
-	setAttr ".tc" 0.20000000298023224;
-	setAttr ".tcf" 0;
-	setAttr ".trsd" 1;
-	setAttr ".gi" 0.10000000149011612;
-	setAttr ".fakc" 0;
-	setAttr ".sc" -type "float3" 0 0 0 ;
-	setAttr ".cp" 10;
 createNode ramp -n "ramp9";
 	setAttr -s 2 ".cel";
 	setAttr ".cel[0].ep" 0;
@@ -795,22 +697,10 @@ createNode shadingEngine -n "FireSmoke:nParticleBallsSE";
 	setAttr ".ihi" 0;
 	setAttr ".ro" yes;
 createNode materialInfo -n "FireSmoke:materialInfo1";
-createNode particleSamplerInfo -n "FireSmoke:particleSamplerInfo1";
-createNode blinn -n "FireSmoke:npBallsBlinn";
-createNode particleCloud -n "FireSmoke:npBallsVolume";
 createNode animCurveTU -n "FireSmoke:emitter1_rate";
 	setAttr ".tan" 10;
 	setAttr ".wgt" no;
 	setAttr -s 2 ".ktv[0:1]"  2 100000 3 0;
-createNode blinn -n "FireSmoke:blinn1";
-	setAttr ".dc" 1;
-	setAttr ".tcf" 0;
-	setAttr ".trsd" 3.2442748546600342;
-	setAttr ".gi" 0.74809157848358154;
-	setAttr ".sc" -type "float3" 1 1 1 ;
-	setAttr ".rfl" 0.8320610523223877;
-	setAttr ".ec" 0.32057863473892212;
-	setAttr ".sro" 0.39694657921791077;
 createNode shadingEngine -n "FireSmoke:blinn1SG";
 	setAttr ".ihi" 0;
 	setAttr ".ro" yes;
@@ -855,7 +745,6 @@ createNode fractal -n "FireSmoke:fractal2";
 	setAttr ".ao" -0.30000001192092896;
 	setAttr ".ra" 0.47499999403953552;
 createNode place2dTexture -n "FireSmoke:place2dTexture5";
-createNode displacementShader -n "FireSmoke:displacementShader1";
 createNode mentalrayOptions -s -n "Draft";
 	setAttr ".splck" yes;
 	setAttr ".fil" 0;
@@ -1266,17 +1155,56 @@ createNode shadingEngine -n "lambert4SG";
 	setAttr ".ihi" 0;
 	setAttr ".ro" yes;
 createNode materialInfo -n "materialInfo9";
+createNode materialInfo -n "TurbulentFlame1:materialInfo2";
+createNode shadingEngine -n "TurbulentFlame1:useBackground1SG";
+	setAttr ".ihi" 0;
+	setAttr ".ro" yes;
+createNode materialInfo -n "TurbulentFlame1:materialInfo1";
+createNode shadingEngine -n "TurbulentFlame1:fluidShape1SG";
+	setAttr ".ihi" 0;
+	setAttr ".ro" yes;
+createNode materialInfo -n "Flame:materialInfo1";
+createNode shadingEngine -n "Flame:fluidShape1SG";
+	setAttr ".ihi" 0;
+	setAttr ".ro" yes;
+createNode materialInfo -n "TurbulentFlame2:materialInfo2";
+createNode shadingEngine -n "TurbulentFlame2:useBackground1SG";
+	setAttr ".ihi" 0;
+	setAttr ".ro" yes;
+createNode materialInfo -n "TurbulentFlame2:materialInfo1";
+createNode shadingEngine -n "TurbulentFlame2:fluidShape1SG";
+	setAttr ".ihi" 0;
+	setAttr ".ro" yes;
+createNode geoConnector -n "TurbulentFlame3:geoConnector1";
+createNode makeNurbTorus -n "TurbulentFlame3:makeNurbTorus1";
+	setAttr ".ax" -type "double3" 0 1 0 ;
+	setAttr ".nsp" 4;
+	setAttr ".hr" 0.5;
+createNode materialInfo -n "TurbulentFlame3:materialInfo2";
+createNode shadingEngine -n "TurbulentFlame3:useBackground1SG";
+	setAttr ".ihi" 0;
+	setAttr ".ro" yes;
+createNode useBackground -n "TurbulentFlame3:useBackground1";
+	setAttr ".sm" 0;
+	setAttr ".fll" 0;
+	setAttr ".sc" -type "float3" 0 0 0 ;
+	setAttr ".rfl" 0;
+	setAttr ".mio" 0;
+createNode materialInfo -n "TurbulentFlame3:materialInfo1";
+createNode shadingEngine -n "TurbulentFlame3:fluidShape1SG";
+	setAttr ".ihi" 0;
+	setAttr ".ro" yes;
 select -ne :time1;
-	setAttr ".o" 1;
-	setAttr ".unw" 1;
+	setAttr ".o" 17;
+	setAttr ".unw" 17;
 select -ne :renderPartition;
-	setAttr -s 19 ".st";
+	setAttr -s 26 ".st";
 select -ne :initialShadingGroup;
 	setAttr ".ro" yes;
 select -ne :initialParticleSE;
 	setAttr ".ro" yes;
 select -ne :defaultShaderList1;
-	setAttr -s 10 ".s";
+	setAttr -s 7 ".s";
 select -ne :defaultTextureList1;
 	setAttr -s 28 ".tx";
 select -ne :lightList1;
@@ -1305,10 +1233,35 @@ select -ne :hardwareRenderingGlobals;
 select -ne :defaultHardwareRenderGlobals;
 	setAttr ".fn" -type "string" "im";
 	setAttr ".res" -type "string" "ntsc_4d 646 485 1.333";
+connectAttr "TurbulentFlame3:makeNurbTorus1.os" "TurbulentFlame3:nurbsTorusShape1.cr"
+		;
+connectAttr ":time1.o" "TurbulentFlame3:fluidEmitter2.ct";
+connectAttr "TurbulentFlame3:geoConnector1.ocd" "TurbulentFlame3:fluidEmitter2.ocd"
+		;
+connectAttr "TurbulentFlame3:geoConnector1.ocl" "TurbulentFlame3:fluidEmitter2.t"
+		;
+connectAttr "TurbulentFlame3:geoConnector1.pos" "TurbulentFlame3:fluidEmitter2.opd"
+		;
+connectAttr "TurbulentFlame3:geoConnector1.vel" "TurbulentFlame3:fluidEmitter2.ovd"
+		;
+connectAttr "TurbulentFlame3:geoConnector1.swg" "TurbulentFlame3:fluidEmitter2.swge"
+		;
+connectAttr "TurbulentFlame3:FlameShape.ifl" "TurbulentFlame3:fluidEmitter2.full[0]"
+		;
+connectAttr "TurbulentFlame3:FlameShape.ots" "TurbulentFlame3:fluidEmitter2.dt[0]"
+		;
+connectAttr "TurbulentFlame3:FlameShape.inh" "TurbulentFlame3:fluidEmitter2.inh[0]"
+		;
+connectAttr "TurbulentFlame3:FlameShape.sti" "TurbulentFlame3:fluidEmitter2.stt[0]"
+		;
+connectAttr "TurbulentFlame3:FlameShape.sd[0]" "TurbulentFlame3:fluidEmitter2.sd[0]"
+		;
+connectAttr ":time1.o" "TurbulentFlame3:FlameShape.cti";
+connectAttr "TurbulentFlame3:fluidEmitter2.ef" "TurbulentFlame3:FlameShape.eml[0].emfr"
+		;
+connectAttr "TurbulentFlame3:fluidEmitter2.efc" "TurbulentFlame3:FlameShape.fce[0]"
+		;
 connectAttr "polyAutoProj1.out" "CauldrenShape.i";
-connectAttr "flameFine1.obr" "strokeShapeFlameFine1.brs";
-connectAttr "curveFlameFineShape.ws" "strokeShapeFlameFine1.pcv[0].crv";
-connectAttr "strokeShapeFlameFine1.wmm" "flameFine1MainShape.i";
 connectAttr "polyAutoProj2.out" "pCubeShape1.i";
 connectAttr ":mentalrayGlobals.msg" ":mentalrayItemsList.glb";
 connectAttr ":miDefaultOptions.msg" ":mentalrayItemsList.opt" -na;
@@ -1352,6 +1305,13 @@ relationship "link" ":lightLinker1" "Dragon_With_Egg:lambert2SG.message" ":defau
 relationship "link" ":lightLinker1" "lambert2SG.message" ":defaultLightSet.message";
 relationship "link" ":lightLinker1" "lambert3SG.message" ":defaultLightSet.message";
 relationship "link" ":lightLinker1" "lambert4SG.message" ":defaultLightSet.message";
+relationship "link" ":lightLinker1" "TurbulentFlame1:fluidShape1SG.message" ":defaultLightSet.message";
+relationship "link" ":lightLinker1" "TurbulentFlame1:useBackground1SG.message" ":defaultLightSet.message";
+relationship "link" ":lightLinker1" "Flame:fluidShape1SG.message" ":defaultLightSet.message";
+relationship "link" ":lightLinker1" "TurbulentFlame2:fluidShape1SG.message" ":defaultLightSet.message";
+relationship "link" ":lightLinker1" "TurbulentFlame2:useBackground1SG.message" ":defaultLightSet.message";
+relationship "link" ":lightLinker1" "TurbulentFlame3:fluidShape1SG.message" ":defaultLightSet.message";
+relationship "link" ":lightLinker1" "TurbulentFlame3:useBackground1SG.message" ":defaultLightSet.message";
 relationship "shadowLink" ":lightLinker1" ":initialShadingGroup.message" ":defaultLightSet.message";
 relationship "shadowLink" ":lightLinker1" ":initialParticleSE.message" ":defaultLightSet.message";
 relationship "shadowLink" ":lightLinker1" "phong1SG.message" ":defaultLightSet.message";
@@ -1371,6 +1331,13 @@ relationship "shadowLink" ":lightLinker1" "Dragon_With_Egg:lambert2SG.message" "
 relationship "shadowLink" ":lightLinker1" "lambert2SG.message" ":defaultLightSet.message";
 relationship "shadowLink" ":lightLinker1" "lambert3SG.message" ":defaultLightSet.message";
 relationship "shadowLink" ":lightLinker1" "lambert4SG.message" ":defaultLightSet.message";
+relationship "shadowLink" ":lightLinker1" "TurbulentFlame1:useBackground1SG.message" ":defaultLightSet.message";
+relationship "shadowLink" ":lightLinker1" "TurbulentFlame1:fluidShape1SG.message" ":defaultLightSet.message";
+relationship "shadowLink" ":lightLinker1" "Flame:fluidShape1SG.message" ":defaultLightSet.message";
+relationship "shadowLink" ":lightLinker1" "TurbulentFlame2:useBackground1SG.message" ":defaultLightSet.message";
+relationship "shadowLink" ":lightLinker1" "TurbulentFlame2:fluidShape1SG.message" ":defaultLightSet.message";
+relationship "shadowLink" ":lightLinker1" "TurbulentFlame3:useBackground1SG.message" ":defaultLightSet.message";
+relationship "shadowLink" ":lightLinker1" "TurbulentFlame3:fluidShape1SG.message" ":defaultLightSet.message";
 connectAttr "layerManager.dli[0]" "defaultLayer.id";
 connectAttr "renderLayerManager.rlmi[0]" "defaultRenderLayer.rlid";
 connectAttr "polySphere1.out" "deleteComponent1.ig";
@@ -1428,32 +1395,9 @@ connectAttr "TurbulentFlame:useBackground1SG.msg" "TurbulentFlame:materialInfo2.
 		;
 connectAttr "TurbulentFlame:fluidShape1SG.msg" "TurbulentFlame:materialInfo1.sg"
 		;
-connectAttr ":time1.o" "flameFine1.tim";
-connectAttr "ramp9.oc" "flameFine1Shader.c";
-connectAttr "flameFine1Shader.oc" "flameFine1ShaderSG.ss";
-connectAttr "flameFine1MainShape.iog" "flameFine1ShaderSG.dsm" -na;
 connectAttr "flameFine1ShaderSG.msg" "materialInfo6.sg";
-connectAttr "flameFine1Shader.msg" "materialInfo6.m";
-connectAttr "ramp9.msg" "materialInfo6.t" -na;
-connectAttr "FireSmoke:npBallsBlinn.oc" "FireSmoke:nParticleBallsSE.ss";
-connectAttr "FireSmoke:npBallsVolume.oi" "FireSmoke:nParticleBallsSE.vs";
 connectAttr "FireSmoke:nParticleBallsSE.msg" "FireSmoke:materialInfo1.sg";
-connectAttr "FireSmoke:npBallsBlinn.msg" "FireSmoke:materialInfo1.m";
-connectAttr "FireSmoke:particleSamplerInfo1.msg" "FireSmoke:materialInfo1.t" -na
-		;
-connectAttr "FireSmoke:particleSamplerInfo1.oc" "FireSmoke:npBallsBlinn.c";
-connectAttr "FireSmoke:particleSamplerInfo1.ot" "FireSmoke:npBallsBlinn.it";
-connectAttr "FireSmoke:particleSamplerInfo1.oi" "FireSmoke:npBallsBlinn.ic";
-connectAttr "FireSmoke:particleSamplerInfo1.ot" "FireSmoke:npBallsVolume.t";
-connectAttr "FireSmoke:particleSamplerInfo1.oc" "FireSmoke:npBallsVolume.c";
-connectAttr "FireSmoke:particleSamplerInfo1.oi" "FireSmoke:npBallsVolume.i";
-connectAttr "FireSmoke:fractal3.oc" "FireSmoke:blinn1.c";
-connectAttr "FireSmoke:remapValue1.oc" "FireSmoke:blinn1.ic";
-connectAttr "FireSmoke:blinn1.oc" "FireSmoke:blinn1SG.ss";
-connectAttr "FireSmoke:displacementShader1.d" "FireSmoke:blinn1SG.ds";
 connectAttr "FireSmoke:blinn1SG.msg" "FireSmoke:materialInfo2.sg";
-connectAttr "FireSmoke:blinn1.msg" "FireSmoke:materialInfo2.m";
-connectAttr "FireSmoke:fractal3.msg" "FireSmoke:materialInfo2.t" -na;
 connectAttr "FireSmoke:place2dTexture1.o" "FireSmoke:cloth1.uv";
 connectAttr "FireSmoke:place2dTexture1.ofs" "FireSmoke:cloth1.fs";
 connectAttr "FireSmoke:place2dTexture2.c" "FireSmoke:file1.c";
@@ -1481,7 +1425,6 @@ connectAttr "FireSmoke:place2dTexture4.ofs" "FireSmoke:fractal1.fs";
 connectAttr "FireSmoke:fractal1.oa" "FireSmoke:bump2d1.bv";
 connectAttr "FireSmoke:place2dTexture5.o" "FireSmoke:fractal2.uv";
 connectAttr "FireSmoke:place2dTexture5.ofs" "FireSmoke:fractal2.fs";
-connectAttr "FireSmoke:fractal2.oa" "FireSmoke:displacementShader1.d";
 connectAttr "FireSmoke:fractal2.oa" "FireSmoke:remapValue1.i";
 connectAttr "FireSmoke:place2dTexture6.o" "FireSmoke:fractal3.uv";
 connectAttr "FireSmoke:place2dTexture6.ofs" "FireSmoke:fractal3.fs";
@@ -1737,6 +1680,37 @@ connectAttr "Stone_Coffin1:file2.oa" "Stone_Coffin1:bump2d1.bv";
 connectAttr "lambert4.oc" "lambert4SG.ss";
 connectAttr "lambert4SG.msg" "materialInfo9.sg";
 connectAttr "lambert4.msg" "materialInfo9.m";
+connectAttr "TurbulentFlame1:useBackground1SG.msg" "TurbulentFlame1:materialInfo2.sg"
+		;
+connectAttr "TurbulentFlame1:fluidShape1SG.msg" "TurbulentFlame1:materialInfo1.sg"
+		;
+connectAttr "Flame:fluidShape1SG.msg" "Flame:materialInfo1.sg";
+connectAttr "TurbulentFlame2:useBackground1SG.msg" "TurbulentFlame2:materialInfo2.sg"
+		;
+connectAttr "TurbulentFlame2:fluidShape1SG.msg" "TurbulentFlame2:materialInfo1.sg"
+		;
+connectAttr ":time1.o" "TurbulentFlame3:geoConnector1.ct";
+connectAttr "TurbulentFlame3:nurbsTorusShape1.l" "TurbulentFlame3:geoConnector1.lge"
+		;
+connectAttr "TurbulentFlame3:nurbsTorusShape1.wm" "TurbulentFlame3:geoConnector1.wm"
+		;
+connectAttr "TurbulentFlame3:nurbsTorusShape1.msg" "TurbulentFlame3:geoConnector1.own"
+		;
+connectAttr "TurbulentFlame3:useBackground1SG.msg" "TurbulentFlame3:materialInfo2.sg"
+		;
+connectAttr "TurbulentFlame3:useBackground1.msg" "TurbulentFlame3:materialInfo2.m"
+		;
+connectAttr "TurbulentFlame3:useBackground1.msg" "TurbulentFlame3:materialInfo2.t"
+		 -na;
+connectAttr "TurbulentFlame3:useBackground1.oc" "TurbulentFlame3:useBackground1SG.ss"
+		;
+connectAttr "TurbulentFlame3:nurbsTorusShape1.iog" "TurbulentFlame3:useBackground1SG.dsm"
+		 -na;
+connectAttr "TurbulentFlame3:fluidShape1SG.msg" "TurbulentFlame3:materialInfo1.sg"
+		;
+connectAttr "TurbulentFlame3:FlameShape.ocl" "TurbulentFlame3:fluidShape1SG.vs";
+connectAttr "TurbulentFlame3:FlameShape.iog" "TurbulentFlame3:fluidShape1SG.dsm"
+		 -na;
 connectAttr "phong1SG.pa" ":renderPartition.st" -na;
 connectAttr "largeFlames3ShaderSG.pa" ":renderPartition.st" -na;
 connectAttr "largeFlames4ShaderSG.pa" ":renderPartition.st" -na;
@@ -1756,14 +1730,18 @@ connectAttr "Dragon_With_Egg:lambert2SG.pa" ":renderPartition.st" -na;
 connectAttr "lambert2SG.pa" ":renderPartition.st" -na;
 connectAttr "lambert3SG.pa" ":renderPartition.st" -na;
 connectAttr "lambert4SG.pa" ":renderPartition.st" -na;
+connectAttr "TurbulentFlame1:fluidShape1SG.pa" ":renderPartition.st" -na;
+connectAttr "TurbulentFlame1:useBackground1SG.pa" ":renderPartition.st" -na;
+connectAttr "Flame:fluidShape1SG.pa" ":renderPartition.st" -na;
+connectAttr "TurbulentFlame2:fluidShape1SG.pa" ":renderPartition.st" -na;
+connectAttr "TurbulentFlame2:useBackground1SG.pa" ":renderPartition.st" -na;
+connectAttr "TurbulentFlame3:fluidShape1SG.pa" ":renderPartition.st" -na;
+connectAttr "TurbulentFlame3:useBackground1SG.pa" ":renderPartition.st" -na;
 connectAttr "phong1.msg" ":defaultShaderList1.s" -na;
-connectAttr "flameFine1Shader.msg" ":defaultShaderList1.s" -na;
-connectAttr "FireSmoke:npBallsBlinn.msg" ":defaultShaderList1.s" -na;
-connectAttr "FireSmoke:npBallsVolume.msg" ":defaultShaderList1.s" -na;
-connectAttr "FireSmoke:blinn1.msg" ":defaultShaderList1.s" -na;
-connectAttr "FireSmoke:displacementShader1.msg" ":defaultShaderList1.s" -na;
 connectAttr "lambert3.msg" ":defaultShaderList1.s" -na;
 connectAttr "lambert4.msg" ":defaultShaderList1.s" -na;
+connectAttr "TurbulentFlame3:FlameShape.msg" ":defaultShaderList1.s" -na;
+connectAttr "TurbulentFlame3:useBackground1.msg" ":defaultShaderList1.s" -na;
 connectAttr "ramp1.msg" ":defaultTextureList1.tx" -na;
 connectAttr "fractal1.msg" ":defaultTextureList1.tx" -na;
 connectAttr "ramp2.msg" ":defaultTextureList1.tx" -na;
